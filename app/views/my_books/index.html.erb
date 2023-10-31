@@ -1,0 +1,63 @@
+<style>
+  table {
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    border-collapse: collapse;
+  }
+
+  table, th, td {
+    border: 1px solid #fff;
+  }
+
+  th, td {
+    padding: 8px;
+    text-align: left;
+  }
+
+  tr:nth-child(even) {
+    background-color: #444;
+  }
+
+  th {
+    background-color: #111;
+  }
+</style>
+<div style="width: 100%; padding: 20px; text-align: center;">
+  <h1>My books</h1>
+  
+  
+</div>
+<%= form_tag(my_books_path, method: 'get') do %>
+  <%= select_tag :category, options_for_select(Category.all.map { |c| [c.name, c.id] }, params[:category]), include_blank: true %>
+  <%= submit_tag 'Filter' %>
+<% end %>
+
+
+
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @my_books.each_with_index do |my_book, index| %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td><%= my_book.title %></td>
+          <td><%= my_book.author %></td>
+          <td><%= my_book.description %></td>
+          <td><%= link_to "Show this my book", my_book, class: "white-link" %></td>
+
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= link_to "New my book", new_my_book_path %>
+</div>

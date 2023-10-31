@@ -1,0 +1,17 @@
+
+
+
+
+
+<h1>Showing book details</h1>
+
+<p><strong>Title: </strong><%= @my_book.title %></p>
+<p><strong>Author: </strong><%= @my_book.author %></p>
+<p><strong>Description: </strong><%= @my_book.description %></p>
+
+<div>
+  <%= link_to "Edit this my book", edit_my_book_path(@my_book) %> |
+  <%= link_to "Back to my books", my_books_path %>
+
+  <%= button_to "Destroy this my book", @my_book, method: :delete %>
+</div>
